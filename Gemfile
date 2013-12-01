@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 gem "rails", "4.0.1"
 gem "mysql2"
+gem "foreigner"
 
 gem "therubyracer", platforms: :ruby
 gem "sass-rails", "~> 4.0.0"

@@ -1,0 +1,12 @@
+<div id="<%= field %>">
+  <h3><%= title %></h3>
+  <div class="bjcpguidelines" id="bjcp<%= field %>"  data-role="collapsible"  data-theme="e" data-content-theme="d">
+    <h3>BJCP Notes</h3>
+    <div class="bjcpnotes"></div>
+  </div>
+  <div class="slidercontainer">
+    <%= f.range_field field, { min: min, max: max, value: @card.send(field) || 0, "data-highlight" => true } %>
+  </div>
+</div>
+
+

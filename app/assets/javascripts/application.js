@@ -14,3 +14,16 @@
 //= require jquery_ujs
 //= require jquery.mobile
 //= require_tree .
+
+$.ready(function() {
+
+  $('#new_card').on('submit', function(event) {
+    console.log('wooo!');
+    var $this = $(this);
+    event.preventDefault();
+    $.post($this.attr('action'), $this.serialze(), function(response) {
+      console.log(response);
+    });
+  });
+
+});

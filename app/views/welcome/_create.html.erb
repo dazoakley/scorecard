@@ -1,4 +1,55 @@
 <div data-role="page" id="create">
   <%= render "header", link_to_home: true %>
 
+  <% @card = Card.new %>
+  <%= form_for @card, { url: { controller: "cards", action: "create", format: "json" }, html: { "data-ajax" => "false" } } do |f| %>
+    <h3>ID or Reference</h3>
+    <%= f.text_field :name %>
+
+    <h3>BJCP Category</h3>
+    <%= grouped_collection_select(:card, :style_subcategory_id, StyleCategory.order("id ASC"), :style_subcategories, :display_name, :id, :display_name, { include_blank: true }) %>
+
+    <div class="pad"></div>
+
+    <div id="descriptors" data-role="collapsible" data-theme="a" data-content-theme="d" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u">
+      <h3>Noticable Issues (mark all that apply)</h3>
+      <fieldset data-role="controlgroup">
+        <label><%= f.check_box :acetaldehyde %><span class="title">Acetaldehyde</span> - <span>Green apple-like aroma and flavor.</span></label>
+        <label><%= f.check_box :alcoholic %><span class="title">Alcoholic</span> - <span>The aroma, flavor, and warming effect of ethanol and higher alcohols. Sometimes described as hot.</span></label>
+        <label><%= f.check_box :astringent %><span class="title">Astringent</span> - <span>Puckering, lingering harshness and/or dryness in the finish/aftertaste; harsh graininess; huskiness.</span></label>
+        <label><%= f.check_box :diacetyl %><span class="title">Diacetyl</span> - <span>Artificial butter, butterscotch, or toffee aroma and flavor. Sometimes perceived as a slickness on the tongue.</span></label>
+        <label><%= f.check_box :dms %><span class="title">DMS (Dimethyl Sulfide)</span> - <span>At low levels a sweet, cooked or canned corn-like aroma and flavor.</span></label>
+        <label><%= f.check_box :estery %><span class="title">Estery</span> - <span>Aroma and/or flavor of any ester (fruits, fruit flavorings, or roses).</span></label>
+        <label><%= f.check_box :grassy %><span class="title">Grassy</span> - <span>Aroma/flavor of fresh-cut grass or green leaves.</span></label>
+        <label><%= f.check_box :light_struck %><span class="title">Light-Struck</span> - <span>Similar to the aroma of a skunk.</span></label>
+        <label><%= f.check_box :metallic %><span class="title">Metallic</span> - <span>Tinny, coiny, copper, iron, or blood-like flavor.</span></label>
+        <label><%= f.check_box :musty %><span class="title">Musty</span> - <span>Stale, musty, or moldy aromas/flavors.</span></label>
+        <label><%= f.check_box :oxidized %><span class="title">Oxidized</span> - <span>Any one or combination of stale, winy/vinous, cardboard, papery, or sherry-like aromas and flavors.</span></label>
+        <label><%= f.check_box :phenolic %><span class="title">Phenolic</span> - <span>Spicy (clove, pepper), smoky, plastic, plastic adhesive strip, and/or medicinal (chlorophenolic).</span></label>
+        <label><%= f.check_box :solvent %><span class="title">Solvent</span> - <span>Aromas and flavors of higher alcohols (fusel alcohols). Similar to acetone or lacquer thinner aromas.</span></label>
+        <label><%= f.check_box :sour_acidic %><span class="title">Sour/Acidic</span> - <span>Tartness in aroma and flavor. Can be sharp and clean (lactic acid), or vinegar-like (acetic acid).</span></label>
+        <label><%= f.check_box :sulfur %><span class="title">Sulfur</span> - <span>The aroma of rotten eggs or burning matches.</span></label>
+        <label><%= f.check_box :vegetal %><span class="title">Vegetal</span> - <span>Cooked, canned, or rotten vegetable aroma and flavor (cabbage, onion, celery, asparagus, etc.)</span></label>
+        <label><%= f.check_box :yeasty %><span class="title">Yeasty</span> - <span>A bready, sulfury or yeast-like aroma or flavor.</span></label>
+    </fieldset>
+    </div>
+
+    <div id="scores" data-role="collapsible" data-theme="a" data-content-theme="d" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u">
+      <h3><span id="totalscore"></span>Scores</h3>
+      <%= render "form_slider", field: :aroma, title: "Aroma", min: 0, max: 12, f: f %>
+      <%= render "form_slider", field: :appearance, title: "Appearance", min: 0, max: 3, f: f %>
+      <%= render "form_slider", field: :flavour, title: "Flavour", min: 0, max: 20, f: f %>
+      <%= render "form_slider", field: :mouthfeel, title: "Mouthfeel", min: 0, max: 5, f: f %>
+      <%= render "form_slider", field: :overall, title: "Overall Impression", min: 0, max: 10, f: f %>
+    </div>
+
+    <div id="commentssection" data-role="collapsible" data-theme="a" data-content-theme="d"  data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u">
+      <h3>Comments</h3>
+      <div><%= f.text_area :comments %></div>
+    </div>
+
+    <div class="pad"></div>
+
+    <%= f.submit("Done", { "data-role" => "button", "data-icon" => "edit", "data-theme" => "b" }) %>
+  <% end %>
 </div>

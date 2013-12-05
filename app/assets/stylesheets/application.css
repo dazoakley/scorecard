@@ -57,8 +57,8 @@ h3 {
   text-shadow: none;
 }
 
-#actions {
-  padding-top: 40px;
+.pad {
+  padding-top: 10px;
 }
 
 #savedmessage {

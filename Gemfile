@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 gem "rails", "4.0.1"
-gem "mysql2"
+gem "mysql2", "~> 0.3.0"
 gem "foreigner"
 
 gem "therubyracer", platforms: :ruby
@@ -25,4 +25,3 @@ group :development do
   gem "capistrano-rbenv", github: "capistrano/rbenv"
   gem "capistrano-bundler"
 end
-

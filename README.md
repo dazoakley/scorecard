@@ -2,7 +2,16 @@
 
 This is a simple app for recording scores on beers.
 
+## Requirements
+
+* The version of ruby defined in [.ruby-version](.ruby-version).
+* A MySQL server
+
 ## Getting Set Up
+
+Install dependencies...
+
+    bundle install
 
 Copy config files...
 
